@@ -62,6 +62,8 @@
 		backCtrl : true,
 		// delay between each menu item sliding animation
 		itemsDelayInterval : 60,
+		// direction 
+		direction : 'r2l',
 		// callback: item that doesn´t have a submenu gets clicked
 		// onItemClick([event], [inner HTML of the clicked item])
 		onItemClick : function(ev, itemName) { return false; }
@@ -188,7 +190,12 @@
 			item.style.WebkitAnimationDelay = item.style.animationDelay = isBackNavigation ? parseInt(pos * self.options.itemsDelayInterval) + 'ms' : parseInt(Math.abs(clickPosition - pos) * self.options.itemsDelayInterval) + 'ms';
 		});
 		// animation class
-		classie.add(currentMenu, isBackNavigation ? 'animate-outToLeft' : 'animate-outToRight');
+		if( this.options.direction === 'r2l' ) {
+			classie.add(currentMenu, !isBackNavigation ? 'animate-outToLeft' : 'animate-outToRight');
+		}
+		else {
+			classie.add(currentMenu, isBackNavigation ? 'animate-outToLeft' : 'animate-outToRight');	
+		}
 	};
 
 	MLMenu.prototype._menuIn = function(nextMenuEl, clickPosition) {
@@ -214,9 +221,15 @@
 			if( pos === farthestIdx ) {
 				onEndAnimation(item, function() {
 					// reset classes
-					classie.remove(currentMenu, isBackNavigation ? 'animate-outToLeft' : 'animate-outToRight');
+					if( self.options.direction === 'r2l' ) {
+						classie.remove(currentMenu, !isBackNavigation ? 'animate-outToLeft' : 'animate-outToRight');
+						classie.remove(nextMenuEl, !isBackNavigation ? 'animate-inFromRight' : 'animate-inFromLeft');
+					}
+					else {
+						classie.remove(currentMenu, isBackNavigation ? 'animate-outToLeft' : 'animate-outToRight');
+						classie.remove(nextMenuEl, isBackNavigation ? 'animate-inFromRight' : 'animate-inFromLeft');
+					}
 					classie.remove(currentMenu, 'menu__level--current');
-					classie.remove(nextMenuEl, isBackNavigation ? 'animate-inFromRight' : 'animate-inFromLeft');
 					classie.add(nextMenuEl, 'menu__level--current');
 
 					//reset current
@@ -244,7 +257,12 @@
 		});	
 		
 		// animation class
-		classie.add(nextMenuEl, isBackNavigation ? 'animate-inFromRight' : 'animate-inFromLeft');
+		if( this.options.direction === 'r2l' ) {
+			classie.add(nextMenuEl, !isBackNavigation ? 'animate-inFromRight' : 'animate-inFromLeft');
+		}
+		else {
+			classie.add(nextMenuEl, isBackNavigation ? 'animate-inFromRight' : 'animate-inFromLeft');
+		}
 	};
 
 	MLMenu.prototype._addBreadcrumb = function(idx) {
