@@ -49,18 +49,18 @@
 	position: absolute;
 	top: 3.5em;
 	bottom: 0;
-	overflow: hidden;
-	width: 100%;
+	width: 300px;
+
 }
 
 .menu__level {
-	position: absolute;
-	top: 0;
+	position: fixed;
+	top: 170px;
 	left: 0;
 	visibility: hidden;
 	overflow: hidden;
 	overflow-y: scroll;
-	width: calc(100% + 50px);
+	width: 300px;
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -73,7 +73,7 @@
 
 .menu__item {
 	display: block;
-	width: calc(100% - 50px);
+	width: 250px;
 }
 
 .menu__link {
@@ -118,22 +118,18 @@
 
 .animate-outToRight .menu__item {
 	-webkit-animation: outToRight 0.6s both cubic-bezier(0.7, 0, 0.3, 1);
-	animation: outToRight 0.6s both cubic-bezier(0.7, 0, 0.3, 1);
+	animation: outToRight 0.1s both cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 @-webkit-keyframes outToRight {
 	to {
-		opacity: 0;
-		-webkit-transform: translate3d(100%, 0, 0);
-		transform: translate3d(100%, 0, 0);
+		margin-left: 100%;
 	}
 }
 
 @keyframes outToRight {
 	to {
-		opacity: 0;
-		-webkit-transform: translate3d(100%, 0, 0);
-		transform: translate3d(100%, 0, 0);
+		margin-left: 100%;
 	}
 }
 
@@ -144,48 +140,36 @@
 
 @-webkit-keyframes outToLeft {
 	to {
-		opacity: 0;
-		-webkit-transform: translate3d(-100%, 0, 0);
-		transform: translate3d(-100%, 0, 0);
+		margin-left: -100%;
 	}
 }
 
 @keyframes outToLeft {
 	to {
-		opacity: 0;
-		-webkit-transform: translate3d(-100%, 0, 0);
-		transform: translate3d(-100%, 0, 0);
+		margin-left: -100%;
 	}
 }
 
 .animate-inFromLeft .menu__item {
 	-webkit-animation: inFromLeft 0.6s both cubic-bezier(0.7, 0, 0.3, 1);
-	animation: inFromLeft 0.6s both cubic-bezier(0.7, 0, 0.3, 1);
+	animation: inFromLeft 0.1s both cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 @-webkit-keyframes inFromLeft {
 	from {
-		opacity: 0;
-		-webkit-transform: translate3d(-100%, 0, 0);
-		transform: translate3d(-100%, 0, 0);
+		margin-left: -100%;
 	}
 	to {
-		opacity: 1;
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
+		margin-left: 0;
 	}
 }
 
 @keyframes inFromLeft {
 	from {
-		opacity: 0;
-		-webkit-transform: translate3d(-100%, 0, 0);
-		transform: translate3d(-100%, 0, 0);
+		margin-left: -100%;
 	}
 	to {
-		opacity: 1;
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
+		margin-left: 0;
 	}
 }
 
@@ -196,27 +180,19 @@
 
 @-webkit-keyframes inFromRight {
 	from {
-		opacity: 0;
-		-webkit-transform: translate3d(100%, 0, 0);
-		transform: translate3d(100%, 0, 0);
+		margin-left: 100%;
 	}
 	to {
-		opacity: 1;
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
+		margin-left: 0;
 	}
 }
 
 @keyframes inFromRight {
 	from {
-		opacity: 0;
-		-webkit-transform: translate3d(100%, 0, 0);
-		transform: translate3d(100%, 0, 0);
+		margin-left: 100%;
 	}
 	to {
-		opacity: 1;
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
+		margin-left: 0;
 	}
 }
 
@@ -273,7 +249,6 @@
 
 .menu__back--hidden {
 	pointer-events: none;
-	opacity: 0;
 }
 
 .menu__back:hover,
@@ -327,13 +302,11 @@
 		top: 0;
 		width: 100%;
 		height: 100vh;
-		-webkit-transform: translate3d(-100%, 0, 0);
-		transform: translate3d(-100%, 0, 0);
+		margin-left: -100%;
 		-webkit-transition: -webkit-transform 0.3s;
 		transition: transform 0.3s;
 	}
 	.menu--open {
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
+		margin-left: 0;
 	}
 }
