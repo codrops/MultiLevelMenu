@@ -91,12 +91,13 @@
 			this.backCtrl.innerHTML = '<span class="icon icon--arrow-left"></span>';
 			this.el.insertBefore(this.backCtrl, this.el.firstChild);
 		}
-		
-		
+
+
 		// create breadcrumbs
 		if( self.options.breadcrumbsCtrl ) {
 			this.breadcrumbsCtrl = document.createElement('nav');
 			this.breadcrumbsCtrl.className = 'menu__breadcrumbs';
+			this.breadcrumbsCtrl.setAttribute('aria-label', 'You are here');
 			this.el.insertBefore(this.breadcrumbsCtrl, this.el.firstChild);
 			// add initial breadcrumb
 			this._addBreadcrumb(0);
@@ -206,7 +207,9 @@
 			// index of the nextMenuEl
 			nextMenuIdx = this.menus.indexOf(nextMenuEl),
 
-			nextMenuItems = this.menusArr[nextMenuIdx].menuItems,
+			nextMenu = this.menusArr[nextMenuIdx],
+			nextMenuEl = nextMenu.menuEl,
+			nextMenuItems = nextMenu.menuItems,
 			nextMenuItemsTotal = nextMenuItems.length;
 
 		// slide in next menu items - first, set the delays for the items
@@ -252,10 +255,13 @@
 
 					// we can navigate again..
 					self.isAnimating = false;
+
+					// focus retention
+					nextMenuEl.focus();
 				});
 			}
-		});	
-		
+		});
+
 		// animation class
 		if( this.options.direction === 'r2l' ) {
 			classie.add(nextMenuEl, !isBackNavigation ? 'animate-inFromRight' : 'animate-inFromLeft');
@@ -271,6 +277,7 @@
 		}
 
 		var bc = document.createElement('a');
+		bc.href = '#'; // make it focusable
 		bc.innerHTML = idx ? this.menusArr[idx].name : this.options.initialBreadcrumb;
 		this.breadcrumbsCtrl.appendChild(bc);
 

@@ -96,7 +96,9 @@
 }
 
 .menu__link:hover,
-.menu__link[data-submenu]:hover::after {
+.menu__link:focus,
+.menu__link[data-submenu]:hover::after,
+.menu__link[data-submenu]:focus::after {
 	color: #5c5edc;
 }
 
@@ -241,7 +243,8 @@
 	pointer-events: none;
 }
 
-.menu__breadcrumbs a:hover {
+.menu__breadcrumbs a:hover,
+.menu__breadcrumbs a:focus {
 	color: #8182e0;
 }
 
@@ -253,7 +256,8 @@
 	color: #33353e;
 }
 
-.menu__breadcrumbs a:not(:last-child):hover::after {
+.menu__breadcrumbs a:not(:last-child):hover::after,
+.menu__breadcrumbs a:not(:last-child):focus::after {
 	color: #33353e;
 }
 
