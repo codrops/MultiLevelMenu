@@ -9,9 +9,6 @@
  * http://www.codrops.com
  */
 
- /* Issues:
- 	Doesn't crawl to find current menu__level or menu__link
- */
 ;(function(window) {
 
 	'use strict';
