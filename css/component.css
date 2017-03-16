@@ -67,6 +67,10 @@
 	list-style-type: none;
 }
 
+.menu__level:focus {
+	outline: none;
+}
+
 .menu__level--current {
 	visibility: visible;
 }
